@@ -1,15 +1,19 @@
+<style>
+form {
+            display: none; /* Formulaire caché par défaut */
+        }
+
+        form.active {
+            display: block; /* Affiche le formulaire actif */
+        }
+</style>
 <?php
 include "common/config.php";
-// Récupération de la route depuis l'URL
 $page = isset($_GET['page']) ? basename($_GET['page']) : 'home';
-
-// Définition des pages autorisées
 $pages = ['index', 'compte', 'detail'];
-
 include "common/head.php";
 
 
-// Vérification et inclusion de la bonne page
 if (in_array($page, $pages)) {
     include 'pages/' . $page . '.php';
 } else {
@@ -51,18 +55,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_nom']) && isset(
     
         if (!empty($nom) && !empty($mail) && !empty($password)) {
             try {
-                // Vérifier si l'email existe déjà
-                $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE utilEmail = :mail");
-                $stmt->bindParam(":mail", $mail);
+                // Vérifier si le nom d'utilisateur existe déjà
+                $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE utilNom = :nom");
+                $stmt->bindParam(":nom", $nom);
                 $stmt->execute();
     
                 if ($stmt->rowCount() > 0) {
-                    echo "<script>alert('Cet email est déjà utilisé !');</script>";
+                    echo "<script>alert('Ce nom d'utilisateur existe deja !');</script>";
                 } else {
-                    // Hacher le mot de passe
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
-                    // Insérer l'utilisateur
+
                     $stmt = $pdo->prepare("INSERT INTO utilisateur (utilNom, utilEmail, utilMdp, utilDateCreation) VALUES (:nom, :mail, :password, NOW())");
                     $stmt->bindParam(":nom", $nom);
                     $stmt->bindParam(":mail", $mail);
@@ -84,32 +86,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_nom']) && isset(
 ?>
 <body>
     <h1>Pokebob</h1>
+    <h4>Bienvenue sur Pokebob le jeu officiel des Pokebob inscrit toi pour accéder à la suite du site ou alors créer toi un compte. </h4>
+    <main class="container">
+        <h2>Choisir une option</h2>
 
-    <h2>Se connecter</h2>
-    <form method="POST">
-        <label for="login_nom">Identifiant</label>
-        <input type="text" name="login_nom" id="login_nom" required>
+        <!-- Radio buttons pour choisir entre connexion ou inscription -->
+        <label>
+            <input type="radio" name="form_choice" id="login_radio" onclick="toggleForm('login')" checked>
+            Se connecter
+        </label>
+        <label>
+            <input type="radio" name="form_choice" id="register_radio" onclick="toggleForm('register')">
+            Créer un compte
+        </label>
 
-        <label for="login_password">Mot de passe</label>
-        <input type="password" name="login_password" id="login_password" required>
+        <!-- Formulaire de connexion -->
+        <form id="login_form" method="POST" class="active">
+            <h2>Se connecter</h2>
+            <label for="login_nom">Identifiant</label>
+            <input type="text" name="login_nom" id="login_nom" required>
 
-        <button type="submit">Connexion</button>
-    </form>
+            <label for="login_password">Mot de passe</label>
+            <input type="password" name="login_password" id="login_password" required>
 
-    <h2>Créer un compte</h2>
-    <form method="POST">
-        <label for="register_nom">Identifiant</label>
-        <input type="text" name="register_nom" id="register_nom" required>
+            <button type="submit">Connexion</button>
+        </form>
 
-        <label for="register_mail">E-Mail</label>
-        <input type="email" name="register_mail" id="register_mail" required>
+        <!-- Formulaire d'inscription -->
+        <form id="register_form" method="POST">
+            <h2>Créer un compte</h2>
+            <label for="register_nom">Identifiant</label>
+            <input type="text" name="register_nom" id="register_nom" required>
 
-        <label for="register_password">Mot de passe</label>
-        <input type="password" name="register_password" id="register_password" required>
+            <label for="register_mail">E-Mail</label>
+            <input type="email" name="register_mail" id="register_mail" required>
 
-        <button type="submit">Créer un compte</button>
-    </form>
-</body>
+            <label for="register_password">Mot de passe</label>
+            <input type="password" name="register_password" id="register_password" required>
+
+            <button type="submit">Créer un compte</button>
+        </form>
+    </main>
+
+    <script>
+        // Fonction pour afficher le bon formulaire en fonction du choix de l'utilisateur
+        function toggleForm(choice) {
+            // Cacher tous les formulaires
+            document.getElementById('login_form').classList.remove('active');
+            document.getElementById('register_form').classList.remove('active');
+
+            // Afficher le formulaire en fonction du choix
+            if (choice === 'login') {
+                document.getElementById('login_form').classList.add('active');
+            } else if (choice === 'register') {
+                document.getElementById('register_form').classList.add('active');
+            }
+        }
+    </script>
 
 
 <?php
