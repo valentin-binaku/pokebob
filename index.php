@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_nom']) && isset(
         if ($user && password_verify($password, $user['utilMdp'])) {
             $_SESSION['user_id'] = $user['utilID'];  // Stocker l'ID utilisateur
             $_SESSION['utilNom'] = $user['utilNom']; // Stocker le pseudo
+            $_SESSION['utilDroit'] = $user['utilType']; // Stocker le type (admin ou utilisateur)
             $_SESSION["connected"] = true;
 
             header("Location: pages/home.php");
@@ -47,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_nom']) && isset(
     }
 }
 
-    // s'inscrire\
+    // s'inscrire
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_nom']) && isset($_POST['register_mail']) && isset($_POST['register_password'])) {
         $nom = trim($_POST['register_nom']);
         $mail = trim($_POST['register_mail']);
@@ -129,7 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_nom']) && isset(
     </main>
 
     <script>
-        // Fonction pour afficher le bon formulaire en fonction du choix de l'utilisateur
         function toggleForm(choice) {
             // Cacher tous les formulaires
             document.getElementById('login_form').classList.remove('active');

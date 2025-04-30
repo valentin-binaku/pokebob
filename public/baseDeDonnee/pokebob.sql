@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 24 mars 2025 à 23:50
+-- Généré le : mer. 30 avr. 2025 à 19:10
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -32,10 +32,30 @@ CREATE TABLE `carte` (
   `carteNom` varchar(255) NOT NULL,
   `carteDescription` text DEFAULT NULL,
   `carteAttaque` int(11) DEFAULT NULL,
-  `carteRareté` enum('commune','rare','légendaire') NOT NULL,
-  `cartePV` int(11) DEFAULT NULL,
-  `carteTauxDrop` float NOT NULL CHECK (`carteTauxDrop` between 0 and 1)
+  `carteRareté` enum('commune','uncommun','rare','légendaire') NOT NULL,
+  `cartePV` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `carte`
+--
+
+INSERT INTO `carte` (`carteID`, `carteNom`, `carteDescription`, `carteAttaque`, `carteRareté`, `cartePV`) VALUES
+(1, 'Bob', 'Bob l\'unique, le premier bob sur terre, il incarne le debut de cette histoire.', 40, 'légendaire', 180),
+(2, 'Bobinette', 'L\'unique femme de Bob. Possede une sagesse infini.', 45, 'légendaire', 170),
+(3, 'Keylian', 'Le stagiaire legendaire au multiple pouvoir de destruction.', 25, 'rare', 140),
+(4, 'CookieBob', 'Le CookieBob est une espece fort en chocolat.', 30, 'rare', 130),
+(5, 'DictaBob', 'La terreur en personne.', 20, 'uncommun', 100),
+(6, 'Bob le bricoleur', 'Un probleme de tuyauterie appeler le il saura vous aidez', 35, 'uncommun', 90),
+(7, 'Bob l\'Eponge', 'Il absorbe toutes vos attaques... vous ne pourrez rien faire contre lui', 20, 'uncommun', 100),
+(8, 'FootBobbeur', 'Le footbob est le sport national. Voici le joueur le plus prestigieux.', 20, 'commune', 70),
+(9, 'HackeurBob', 'Faites gaffes a vos donnees et laissez aucune trace sur internet.', 30, 'commune', 60),
+(10, 'Bob dirigeant de la RGPD', 'L\'ennemi de HackeurBob. Il connait les points faible de celui-ci', 20, 'commune', 90),
+(11, 'Bobo Parisien', 'Le bob de la capital. il est tres feineant', 10, 'commune', 50),
+(12, 'Narbob', 'Ce bob possede aucun talent.', 5, 'commune', 40),
+(13, 'Bob Marley', 'Le Bob Marley est la pour fumer ses adversaires.', 15, 'commune', 50),
+(14, 'Bowbzer', 'Ce bob est terrifiant n\'essayez pas de sympathise avec lui', 10, 'commune', 110),
+(15, 'BobYlone', 'L\'ennemi de Bob Marley. ils ne peuvent cohabiter ensemble.', 20, 'commune', 45);
 
 -- --------------------------------------------------------
 
@@ -105,7 +125,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `carte`
 --
 ALTER TABLE `carte`
-  MODIFY `carteID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `carteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `inventaire`
