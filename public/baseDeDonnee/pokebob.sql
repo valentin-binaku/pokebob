@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 30 avr. 2025 à 19:10
+-- Généré le : jeu. 01 mai 2025 à 09:55
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -32,30 +32,31 @@ CREATE TABLE `carte` (
   `carteNom` varchar(255) NOT NULL,
   `carteDescription` text DEFAULT NULL,
   `carteAttaque` int(11) DEFAULT NULL,
-  `carteRareté` enum('commune','uncommun','rare','légendaire') NOT NULL,
-  `cartePV` int(11) DEFAULT NULL
+  `carteRareté` enum('common','uncommun','rare','legendary') NOT NULL,
+  `cartePV` int(11) DEFAULT NULL,
+  `image` varchar(99) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `carte`
 --
 
-INSERT INTO `carte` (`carteID`, `carteNom`, `carteDescription`, `carteAttaque`, `carteRareté`, `cartePV`) VALUES
-(1, 'Bob', 'Bob l\'unique, le premier bob sur terre, il incarne le debut de cette histoire.', 40, 'légendaire', 180),
-(2, 'Bobinette', 'L\'unique femme de Bob. Possede une sagesse infini.', 45, 'légendaire', 170),
-(3, 'Keylian', 'Le stagiaire legendaire au multiple pouvoir de destruction.', 25, 'rare', 140),
-(4, 'CookieBob', 'Le CookieBob est une espece fort en chocolat.', 30, 'rare', 130),
-(5, 'DictaBob', 'La terreur en personne.', 20, 'uncommun', 100),
-(6, 'Bob le bricoleur', 'Un probleme de tuyauterie appeler le il saura vous aidez', 35, 'uncommun', 90),
-(7, 'Bob l\'Eponge', 'Il absorbe toutes vos attaques... vous ne pourrez rien faire contre lui', 20, 'uncommun', 100),
-(8, 'FootBobbeur', 'Le footbob est le sport national. Voici le joueur le plus prestigieux.', 20, 'commune', 70),
-(9, 'HackeurBob', 'Faites gaffes a vos donnees et laissez aucune trace sur internet.', 30, 'commune', 60),
-(10, 'Bob dirigeant de la RGPD', 'L\'ennemi de HackeurBob. Il connait les points faible de celui-ci', 20, 'commune', 90),
-(11, 'Bobo Parisien', 'Le bob de la capital. il est tres feineant', 10, 'commune', 50),
-(12, 'Narbob', 'Ce bob possede aucun talent.', 5, 'commune', 40),
-(13, 'Bob Marley', 'Le Bob Marley est la pour fumer ses adversaires.', 15, 'commune', 50),
-(14, 'Bowbzer', 'Ce bob est terrifiant n\'essayez pas de sympathise avec lui', 10, 'commune', 110),
-(15, 'BobYlone', 'L\'ennemi de Bob Marley. ils ne peuvent cohabiter ensemble.', 20, 'commune', 45);
+INSERT INTO `carte` (`carteID`, `carteNom`, `carteDescription`, `carteAttaque`, `carteRareté`, `cartePV`, `image`) VALUES
+(1, 'Bob', 'Bob l\'unique, le premier bob sur terre, il incarne le debut de cette histoire.', 40, 'legendary', 180, NULL),
+(2, 'Bobinette', 'L\'unique femme de Bob. Possede une sagesse infini.', 45, 'legendary', 170, NULL),
+(3, 'Keylian', 'Le stagiaire legendaire au multiple pouvoir de destruction.', 25, 'rare', 140, NULL),
+(4, 'CookieBob', 'Le CookieBob est une espece fort en chocolat.', 30, 'rare', 130, NULL),
+(5, 'DictaBob', 'La terreur en personne.', 20, 'uncommun', 100, NULL),
+(6, 'Bob le bricoleur', 'Un probleme de tuyauterie appeler le il saura vous aidez', 35, 'uncommun', 90, NULL),
+(7, 'Bob l\'Eponge', 'Il absorbe toutes vos attaques... vous ne pourrez rien faire contre lui', 20, 'uncommun', 100, NULL),
+(8, 'FootBobbeur', 'Le footbob est le sport national. Voici le joueur le plus prestigieux.', 20, 'common', 70, NULL),
+(9, 'HackeurBob', 'Faites gaffes a vos donnees et laissez aucune trace sur internet.', 30, 'common', 60, NULL),
+(10, 'Bob dirigeant de la RGPD', 'L\'ennemi de HackeurBob. Il connait les points faible de celui-ci', 20, 'common', 90, NULL),
+(11, 'Bobo Parisien', 'Le bob de la capital. il est tres faineant', 10, 'common', 50, NULL),
+(12, 'Narbob', 'Ce bob possede aucun talent.', 5, 'common', 40, NULL),
+(13, 'Bob Marley', 'Le Bob Marley est la pour fumer ses adversaires.', 15, 'common', 50, NULL),
+(14, 'Bowbzer', 'Ce bob est terrifiant n\'essayez pas de sympathise avec lui', 10, 'common', 110, NULL),
+(15, 'BobYlone', 'L\'ennemi de Bob Marley. ils ne peuvent cohabiter ensemble.', 20, 'common', 45, NULL);
 
 -- --------------------------------------------------------
 
@@ -64,10 +65,20 @@ INSERT INTO `carte` (`carteID`, `carteNom`, `carteDescription`, `carteAttaque`, 
 --
 
 CREATE TABLE `inventaire` (
-  `inventaireID` int(11) NOT NULL,
   `utilID` int(11) DEFAULT NULL,
-  `carteID` int(11) DEFAULT NULL
+  `carteID` int(11) DEFAULT NULL,
+  `Stock` int(55) DEFAULT NULL,
+  `idInventory` int(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `inventaire`
+--
+
+INSERT INTO `inventaire` (`utilID`, `carteID`, `Stock`, `idInventory`) VALUES
+(2, 9, 1, 95),
+(2, 11, 1, 96),
+(2, 15, 1, 97);
 
 -- --------------------------------------------------------
 
@@ -82,15 +93,16 @@ CREATE TABLE `utilisateur` (
   `utilMdp` varchar(255) NOT NULL,
   `utilType` enum('user','admin') DEFAULT 'user',
   `utilMoney` int(11) DEFAULT 0,
-  `utilDateCreation` timestamp NOT NULL DEFAULT current_timestamp()
+  `utilDateCreation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `utilDerniereOuverture` timestamp(6) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`utilID`, `utilNom`, `utilEmail`, `utilMdp`, `utilType`, `utilMoney`, `utilDateCreation`) VALUES
-(2, 'admin', 'admin@admin.com', '$2y$10$VTxVn.dGgpGd199aq8RoYeX/AnEGgAjdr/JjszMbA/38NkhXIZxcy', 'user', 0, '2025-03-24 22:49:28');
+INSERT INTO `utilisateur` (`utilID`, `utilNom`, `utilEmail`, `utilMdp`, `utilType`, `utilMoney`, `utilDateCreation`, `utilDerniereOuverture`) VALUES
+(2, 'admin', 'admin@admin.com', '$2y$10$VTxVn.dGgpGd199aq8RoYeX/AnEGgAjdr/JjszMbA/38NkhXIZxcy', 'user', 0, '2025-03-24 22:49:28', '2025-05-01 07:49:35.000000');
 
 --
 -- Index pour les tables déchargées
@@ -106,8 +118,8 @@ ALTER TABLE `carte`
 -- Index pour la table `inventaire`
 --
 ALTER TABLE `inventaire`
-  ADD PRIMARY KEY (`inventaireID`),
-  ADD KEY `utilID` (`utilID`),
+  ADD PRIMARY KEY (`idInventory`),
+  ADD UNIQUE KEY `utilID` (`utilID`,`carteID`),
   ADD KEY `carteID` (`carteID`);
 
 --
@@ -131,7 +143,7 @@ ALTER TABLE `carte`
 -- AUTO_INCREMENT pour la table `inventaire`
 --
 ALTER TABLE `inventaire`
-  MODIFY `inventaireID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idInventory` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
