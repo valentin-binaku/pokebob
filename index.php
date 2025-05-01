@@ -8,6 +8,17 @@ form {
         }
 </style>
 <?php
+
+if ($user && password_verify($password, $user['utilMdp'])) {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $_SESSION['user_id'] = $user['utilID'];
+    header("Location: index.php?page=account");
+    exit();
+}
+
 include "common/config.php";
 $page = isset($_GET['page']) ? basename($_GET['page']) : 'home';
 $pages = ['index', 'compte', 'detail'];
