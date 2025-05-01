@@ -30,7 +30,6 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $pdo->prepare("SELECT utilNom, utilEmail, utilMoney FROM utilisateur WHERE utilID = :id");
-    //$stmt->bindParam(":id", $userID);
     $stmt->execute(['id' => $userID]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
