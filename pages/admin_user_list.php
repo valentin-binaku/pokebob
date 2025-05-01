@@ -51,9 +51,9 @@ try {
     die("Erreur : " . $e->getMessage());
 }
 
-include "../common/footer.php";
-
 ?>
-
+<?php
+include "../common/footer.php";
+?>
 </body>
 </html>
