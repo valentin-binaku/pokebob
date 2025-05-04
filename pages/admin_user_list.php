@@ -7,18 +7,10 @@
 </head>
 <body>
 <?php
-
-session_start();
-
 include "../common/config.php";
 include "../common/permissionAdmin.php";
 include "../common/head.php";
 include "../common/navbar.php";
-
-if (!isset($_SESSION['user_id'])) {
-    echo "Vous devez être connecté pour accéder à cette page.";
-    exit();
-}
 
 echo "Liste des utilisateurs :" . "<br>";
 
