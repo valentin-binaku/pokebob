@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-echo "(Afficher photo de profil)" . "<br>";
+echo '<img src="C:\xampp\project\challenge-main\pokebob\pages\photoDeProfil.png" alt="Photo de profil">';
 echo "" . "<br>";
 
 $userID = $_SESSION['user_id'];
