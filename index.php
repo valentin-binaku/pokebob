@@ -9,7 +9,7 @@ form {
 </style>
 <?php
 
-if ($user && password_verify($password, $user['utilMdp'])) {
+if (isset($user) && $user && password_verify($password, $user['utilMdp'])) {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }

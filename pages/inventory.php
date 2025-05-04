@@ -29,7 +29,7 @@ try {
     echo "<div class='grid'>";
     foreach ($cartes as $carte) {
         echo "<article>";
-        echo "<img src='public/image/cartes/{$carte['image']}' alt='{$carte['carteNom']}' style='height:200px;'>";
+        echo "<img src='../public/image/{$carte['image']}' alt='{$carte['carteNom']}' style='height:200px;'>";
         echo "<p>{$carte['carteNom']}<br><small>{$carte['carteRareté']}</small></p>";
         echo "<p><small>{$carte['carteDescription']}</small></p>";
         echo "<p>x {$carte['Stock']}</p>";

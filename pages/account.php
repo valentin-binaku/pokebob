@@ -8,8 +8,6 @@
 <body>
 <?php
 
-session_start();
-
 include "../common/config.php";
 include "../common/permission.php";
 include "../common/head.php";
@@ -48,6 +46,9 @@ try {
 include "../common/footer.php";
 
 ?>
+<form action="logout.php" method="post">
+    <button type="submit">Déconnexion</button>
+</form>
 
 </body>
 </html>

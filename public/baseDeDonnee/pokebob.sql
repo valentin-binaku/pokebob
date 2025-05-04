@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 01 mai 2025 à 09:55
+-- Généré le : dim. 04 mai 2025 à 17:29
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -42,21 +42,21 @@ CREATE TABLE `carte` (
 --
 
 INSERT INTO `carte` (`carteID`, `carteNom`, `carteDescription`, `carteAttaque`, `carteRareté`, `cartePV`, `image`) VALUES
-(1, 'Bob', 'Bob l\'unique, le premier bob sur terre, il incarne le debut de cette histoire.', 40, 'legendary', 180, NULL),
-(2, 'Bobinette', 'L\'unique femme de Bob. Possede une sagesse infini.', 45, 'legendary', 170, NULL),
-(3, 'Keylian', 'Le stagiaire legendaire au multiple pouvoir de destruction.', 25, 'rare', 140, NULL),
-(4, 'CookieBob', 'Le CookieBob est une espece fort en chocolat.', 30, 'rare', 130, NULL),
-(5, 'DictaBob', 'La terreur en personne.', 20, 'uncommun', 100, NULL),
-(6, 'Bob le bricoleur', 'Un probleme de tuyauterie appeler le il saura vous aidez', 35, 'uncommun', 90, NULL),
-(7, 'Bob l\'Eponge', 'Il absorbe toutes vos attaques... vous ne pourrez rien faire contre lui', 20, 'uncommun', 100, NULL),
-(8, 'FootBobbeur', 'Le footbob est le sport national. Voici le joueur le plus prestigieux.', 20, 'common', 70, NULL),
-(9, 'HackeurBob', 'Faites gaffes a vos donnees et laissez aucune trace sur internet.', 30, 'common', 60, NULL),
-(10, 'Bob dirigeant de la RGPD', 'L\'ennemi de HackeurBob. Il connait les points faible de celui-ci', 20, 'common', 90, NULL),
-(11, 'Bobo Parisien', 'Le bob de la capital. il est tres faineant', 10, 'common', 50, NULL),
-(12, 'Narbob', 'Ce bob possede aucun talent.', 5, 'common', 40, NULL),
-(13, 'Bob Marley', 'Le Bob Marley est la pour fumer ses adversaires.', 15, 'common', 50, NULL),
-(14, 'Bowbzer', 'Ce bob est terrifiant n\'essayez pas de sympathise avec lui', 10, 'common', 110, NULL),
-(15, 'BobYlone', 'L\'ennemi de Bob Marley. ils ne peuvent cohabiter ensemble.', 20, 'common', 45, NULL);
+(1, 'Bob', 'Bob l\'unique, le premier bob sur terre, il incarne le debut de cette histoire.', 40, 'legendary', 180, 'bob.jpg'),
+(2, 'Bobinette', 'L\'unique femme de Bob. Possede une sagesse infini.', 45, 'legendary', 170, 'bobinette.jpg'),
+(3, 'Keylian', 'Le stagiaire legendaire au multiple pouvoir de destruction.', 25, 'rare', 140, 'keylian.jpg'),
+(4, 'CookieBob', 'Le CookieBob est une espece fort en chocolat.', 30, 'rare', 130, 'cookieBob.jpg'),
+(5, 'DictaBob', 'La terreur en personne.', 20, 'uncommun', 100, 'Dictabob.jpg'),
+(6, 'Bob le bricoleur', 'Un probleme de tuyauterie appeler le il saura vous aidez', 35, 'uncommun', 90, 'bobLeBricoleur.jpg'),
+(7, 'Bob l\'Eponge', 'Il absorbe toutes vos attaques... vous ne pourrez rien faire contre lui', 20, 'uncommun', 100, 'bobLeponge.jpg'),
+(8, 'FootBobbeur', 'Le footbob est le sport national. Voici le joueur le plus prestigieux.', 20, 'common', 70, 'footbobber.jpg'),
+(9, 'HackeurBob', 'Faites gaffes a vos donnees et laissez aucune trace sur internet.', 30, 'common', 60, 'bobLeHackeur'),
+(10, 'Bob dirigeant de la RGPD', 'L\'ennemi de HackeurBob. Il connait les points faible de celui-ci', 20, 'common', 90, 'bobDirigeantDeLaRGPD.jpg'),
+(11, 'Bobo Parisien', 'Le bob de la capital. il est tres faineant', 10, 'common', 50, 'boboParisien.jpg'),
+(12, 'Narbob', 'Ce bob possede aucun talent.', 5, 'common', 40, 'narbob.jpg'),
+(13, 'Bob Marley', 'Le Bob Marley est la pour fumer ses adversaires.', 15, 'common', 50, 'bobmarley.jpg'),
+(14, 'Bowbzer', 'Ce bob est terrifiant n\'essayez pas de sympathise avec lui', 10, 'common', 110, 'bowbzer.jpg'),
+(15, 'BobYlone', 'L\'ennemi de Bob Marley. ils ne peuvent cohabiter ensemble.', 20, 'common', 45, 'bobylone.jpg');
 
 -- --------------------------------------------------------
 
@@ -70,15 +70,6 @@ CREATE TABLE `inventaire` (
   `Stock` int(55) DEFAULT NULL,
   `idInventory` int(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `inventaire`
---
-
-INSERT INTO `inventaire` (`utilID`, `carteID`, `Stock`, `idInventory`) VALUES
-(2, 9, 1, 95),
-(2, 11, 1, 96),
-(2, 15, 1, 97);
 
 -- --------------------------------------------------------
 
@@ -102,7 +93,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`utilID`, `utilNom`, `utilEmail`, `utilMdp`, `utilType`, `utilMoney`, `utilDateCreation`, `utilDerniereOuverture`) VALUES
-(2, 'admin', 'admin@admin.com', '$2y$10$VTxVn.dGgpGd199aq8RoYeX/AnEGgAjdr/JjszMbA/38NkhXIZxcy', 'user', 0, '2025-03-24 22:49:28', '2025-05-01 07:49:35.000000');
+(2, 'admin', 'admin@admin.com', '$2y$10$VTxVn.dGgpGd199aq8RoYeX/AnEGgAjdr/JjszMbA/38NkhXIZxcy', 'admin', 0, '2025-03-24 22:49:28', '2025-05-04 14:06:01.000000');
 
 --
 -- Index pour les tables déchargées
@@ -143,7 +134,7 @@ ALTER TABLE `carte`
 -- AUTO_INCREMENT pour la table `inventaire`
 --
 ALTER TABLE `inventaire`
-  MODIFY `idInventory` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `idInventory` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`

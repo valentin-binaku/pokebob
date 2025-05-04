@@ -11,7 +11,7 @@
 session_start();
 
 include "../common/config.php";
-include "../common/permission.php";
+include "../common/permissionAdmin.php";
 include "../common/head.php";
 include "../common/navbar.php";
 
