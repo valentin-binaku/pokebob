@@ -22,7 +22,7 @@
     <p>Votre objectif est de collecter le plus de Bob possible ! Les Bob sont des être comparable à des pions, il existe plusieurs variantes de ses Bob toutes collectionnable en ouvrant des boosters.</p>
 
     <h2>Les boosters</h2>
-    <p>Les boosters sont donnés jusqu'à une fois par heure. Chaque Bob possède ses propres stats : PV et ATQ. Tentez d'obtenir les meilleurs Bob possible !</p>
+    <p>Les boosters sont donnés jusqu'à une fois toutes les 2 heures. Chaque Bob possède ses propres stats : PV et ATQ. Tentez d'obtenir les meilleurs Bob possible !</p>
 
     <h2>Rareté des Bob</h2>
     <p>Il existe également différentes rareté de Bob : commun, uncommun, rare et légendaire. Plus votre Bob est rare plus il prend de la valeur.</p>
