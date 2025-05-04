@@ -41,7 +41,9 @@ try {
     die("Erreur de connexion : " . $e->getMessage());
 }
 ?>
-
+<form action="card_list.php" method="post">
+    <button type="submit">Liste des cartes</button>
+</form>
 <?php
 include "../common/footer.php";
 ?>
