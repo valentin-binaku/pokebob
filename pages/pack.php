@@ -7,10 +7,10 @@ include "../common/navbar.php";
 function tirerCarte() {
     $rand = mt_rand(1, 1000);
 
-    if ($rand <= 2) {
-        return 'legendary'; // 0.2%
+    if ($rand <= 5) {
+        return 'legendary'; // 0.5%
     } elseif ($rand <= 50) {
-        return 'rare'; // 4.8%
+        return 'rare'; // 4.5%
     } elseif ($rand <= 300) {
         return 'uncommun'; // 25%
     } else {
@@ -66,7 +66,7 @@ try {
         echo "<h2>Tu as obtenu :</h2><div class='grid'>";
         foreach ($cartes as $carte) {
             echo "<article>";
-            echo "<img src='public/image/cartes/{$carte['image']}' alt='{$carte['carteNom']}' style='height:200px;'>";
+            echo "<img src='../public/image/{$carte['image']}' alt='{$carte['carteNom']}' style='height:200px;'>";
             echo "<p>{$carte['carteNom']}<br><small>{$carte['carteRareté']}</small></p>";
             echo "</article>";
         }
