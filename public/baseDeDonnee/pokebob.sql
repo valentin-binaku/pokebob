@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 04 mai 2025 à 17:29
+-- Généré le : lun. 05 mai 2025 à 08:39
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -50,7 +50,7 @@ INSERT INTO `carte` (`carteID`, `carteNom`, `carteDescription`, `carteAttaque`, 
 (6, 'Bob le bricoleur', 'Un probleme de tuyauterie appeler le il saura vous aidez', 35, 'uncommun', 90, 'bobLeBricoleur.jpg'),
 (7, 'Bob l\'Eponge', 'Il absorbe toutes vos attaques... vous ne pourrez rien faire contre lui', 20, 'uncommun', 100, 'bobLeponge.jpg'),
 (8, 'FootBobbeur', 'Le footbob est le sport national. Voici le joueur le plus prestigieux.', 20, 'common', 70, 'footbobber.jpg'),
-(9, 'HackeurBob', 'Faites gaffes a vos donnees et laissez aucune trace sur internet.', 30, 'common', 60, 'bobLeHackeur'),
+(9, 'HackeurBob', 'Faites gaffes a vos donnees et laissez aucune trace sur internet.', 30, 'common', 60, 'bobLeHackeur.jpg'),
 (10, 'Bob dirigeant de la RGPD', 'L\'ennemi de HackeurBob. Il connait les points faible de celui-ci', 20, 'common', 90, 'bobDirigeantDeLaRGPD.jpg'),
 (11, 'Bobo Parisien', 'Le bob de la capital. il est tres faineant', 10, 'common', 50, 'boboParisien.jpg'),
 (12, 'Narbob', 'Ce bob possede aucun talent.', 5, 'common', 40, 'narbob.jpg'),
@@ -87,13 +87,6 @@ CREATE TABLE `utilisateur` (
   `utilDateCreation` timestamp NOT NULL DEFAULT current_timestamp(),
   `utilDerniereOuverture` timestamp(6) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`utilID`, `utilNom`, `utilEmail`, `utilMdp`, `utilType`, `utilMoney`, `utilDateCreation`, `utilDerniereOuverture`) VALUES
-(2, 'admin', 'admin@admin.com', '$2y$10$VTxVn.dGgpGd199aq8RoYeX/AnEGgAjdr/JjszMbA/38NkhXIZxcy', 'admin', 0, '2025-03-24 22:49:28', '2025-05-04 14:06:01.000000');
 
 --
 -- Index pour les tables déchargées
@@ -134,7 +127,7 @@ ALTER TABLE `carte`
 -- AUTO_INCREMENT pour la table `inventaire`
 --
 ALTER TABLE `inventaire`
-  MODIFY `idInventory` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `idInventory` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
