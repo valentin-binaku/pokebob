@@ -36,6 +36,6 @@ $stmt2->bindParam(':gain', $gain);
 $stmt2->bindParam(':userID', $userID);
 $stmt2->execute();
 
-header('Location: inventaire.php');
+header('Location: ../pages/inventory.php');
 exit();
 ?>
